@@ -1,0 +1,74 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Netsol
+ * @package     Netsol_Searchhistory
+ * @copyright   Copyright (c) 2016 Netsolutions India (http://www.netsolutions.in)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ 
+$searchProductIds =  $this->paSearchBlock();
+$count = count($searchProductIds); 
+$ulClass = $count > 4 ? 'predictive-analytic  bxslider' : 'products-grid';
+$enabled = Mage::helper('searchhistory/data')->isEnabled();
+$heading = Mage::helper('searchhistory/data')->getSearchBlockHeading();
+?>
+<?php if($enabled == 1){ ?>
+<div class="predictive-analytic" id="predictiveanalytic">
+	<?php if(Mage::getSingleton('customer/session')->isLoggedIn() || count($searchProductIds)){ ?>
+			<?php if(count($searchProductIds)) {
+				if($heading == "") { ?>
+						<h4><?php echo $this->__('You may also be interested in the following recommended product(s)'); ?></h4>
+				<?php }else { ?>
+						<h4><?php echo $heading; ?></h4>
+				<?php }  ?>
+				<div class="owl-carousel" id="owl-search">
+					<?php 
+					foreach($searchProductIds as $productId): 
+						$product = Mage::getModel('catalog/product')->load($productId);
+						$_imgSize =  "200";
+						$styleValue = "clear: inherit !important;  margin-right: inherit !important;";
+						$style = $count > 4 ? "" : $styleValue;
+					?>
+					<div style ="<?php echo $style ?>" class="item">
+						<a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" class="product-image-pa">
+							<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize($_imgSize); ?>" alt=""/>
+						</a>
+						<h3 class="product-name">
+							<a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>"><?php echo $product->getName(); ?></a>
+						</h3>
+						<div id="pa-price"><?php echo $this->getPriceHtml($product, true); ?></div>
+						
+					</div>
+				<?php endforeach; ?>
+				</div>
+
+			<?php }else{ ?>
+			<?php } ?>
+	<?php } ?>
+</div>
+
+<script type="text/javascript">
+	jQuery.noConflict();
+	jQuery(document).ready(function() {
+
+	  jQuery("#owl-search").owlCarousel({
+		  autoPlay: 2000, //Set AutoPlay to 3 seconds
+		  items : 4
+	  });
+
+	});
+</script>
+
+<?php } ?>

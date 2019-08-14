@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Netsol_Searchhistory>
+      <version>0.1.0</version>
+    </Netsol_Searchhistory>
+  </modules>
+  
+  <frontend>
+	  <routers>
+		  <searchhistory>
+			<use>standard</use>
+			  <args>
+				<module>Netsol_Searchhistory</module>
+				<frontName>searchhistory</frontName>
+			  </args>
+		  </searchhistory>
+    </routers>
+	 <layout>
+		  <updates>
+			<searchhistory>
+			  <file>searchhistory.xml</file>
+			</searchhistory>
+		  </updates>
+	</layout>
+	<events>
+		<controller_action_layout_generate_blocks_after>
+			<observers>
+				<unset_layout_observer>
+					<type>singleton</type>
+					<class>Netsol_Searchhistory_Model_Observer</class>
+					<method>unsetlayoutblocks</method>
+				</unset_layout_observer>
+			</observers>
+		</controller_action_layout_generate_blocks_after>
+		
+		<controller_action_layout_render_before_catalogsearch_result_index><!-- for the quick search-->
+			<observers>
+				<catalogsearch_observer>
+					<class>Netsol_Searchhistory_Model_Observer</class>
+					<method>catalogSearchUpdate</method>
+				</catalogsearch_observer>
+			</observers>
+		</controller_action_layout_render_before_catalogsearch_result_index>
+	</events>	
+  </frontend>
+  <global>
+    <helpers>
+      <searchhistory>
+        <class>Netsol_Searchhistory_Helper</class>
+      </searchhistory>
+    </helpers>
+	<resources>
+	  <netsol_search_setup>
+		<setup>
+		  <module>Netsol_Searchhistory</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </netsol_search_setup>
+	  <netsol_search_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </netsol_search_write>
+	  <netsol_search_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </netsol_search_read>
+	</resources>
+	<models>
+		<searchhistory>
+			<class>Netsol_Searchhistory_Model</class>
+			<resourceModel>searchhistory_mysql4</resourceModel>
+		</searchhistory>
+		<searchhistory_mysql4>
+			 <class>Netsol_Searchhistory_Model_Mysql4</class>
+			 <entities>
+				 <pasearch>
+					 <table>netsol_pa_search</table>
+				 </pasearch>
+			  </entities>
+		</searchhistory_mysql4>
+	</models>
+	<blocks>
+	  <searchhistory>
+		<class>Netsol_Searchhistory_Block</class>
+	  </searchhistory>
+	</blocks>
+  </global>
+  
+   <admin>
+	<routers>
+	  <searchhistory>
+	    <use>admin</use>
+		<args>
+		  <module>Netsol_Searchhistory</module>
+		  <frontName>admin_searchhistory</frontName>
+		</args>
+	  </searchhistory>
+	</routers>
+  </admin>
+  
+   <adminhtml>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+			  <children>
+					<searchhistory translate="title" module="searchhistory">
+					  <title>Personalytics</title>
+					  <sort_order>1000</sort_order>
+					</searchhistory>
+			  </children>
+		</admin>
+	  </resources>
+	</acl>
+	
+	<layout>
+	  <updates>
+		<searchhistory>
+		  <file>searchhistory.xml</file>
+		</searchhistory>
+	  </updates>
+	</layout>
+	
+	<events>
+		<controller_action_layout_load_before>
+			<observers>
+				<searchhistory_adminhtml_custom_layout>
+					<class>Netsol_Searchhistory_Model_Observer</class>
+					<method>addAdminCustomLayoutHandle</method>
+				</searchhistory_adminhtml_custom_layout>
+			</observers>
+		</controller_action_layout_load_before>
+	</events>
+	
+  </adminhtml>
+  
+	<default>
+		<pa_searchsetting>
+			<pa_searchhistory>
+				<search_block_heading>You May Also Be Interested </search_block_heading>
+				<search_term_count>5</search_term_count>
+				<search_max_product_count>15</search_max_product_count>
+			</pa_searchhistory>
+		</pa_searchsetting>
+	</default>
+</config> 
