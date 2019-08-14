@@ -35,11 +35,10 @@ class Netsol_Searchhistory_Helper_Pasearch extends Varien_Data_Form_Element_Imag
     }    
     
 	/**
-	 * @description: Resource iterator technique allows 
-	 * get product from pasearch
+	 * @description: Based on registered user search terms 
+	 * recommendation of product is displayed
 	 * 
-	 * @param 
-	 * @return  
+	 * @return  $searchProductCollections
 	 * */
 	 public function getSearchCollections()
 	 {
@@ -89,7 +88,7 @@ class Netsol_Searchhistory_Helper_Pasearch extends Varien_Data_Form_Element_Imag
 										  ->addAttributeToSelect('parent_item_id')
 										  ->addAttributeToSelect('product_id')
 										  ->addFieldToFilter('product_id', array('in' =>$searchProductIds));
-							$orders->getSelect()->join( array('orders'=> sales_flat_order),
+							$orders->getSelect()->join( array('orders'=> Mage::getConfig()->getTablePrefix().'sales_flat_order'),
 							'orders.entity_id=main_table.order_id',array('orders.created_at','orders.customer_id','orders.status')); 
 							$customer = Mage::getSingleton('customer/session')->getCustomer();
 							$orders->addFieldToFilter('customer_id',$customer->getId())
@@ -209,8 +208,7 @@ class Netsol_Searchhistory_Helper_Pasearch extends Varien_Data_Form_Element_Imag
 							}
 
 							$secondCaseProductCollection = array_unique($secondCaseProductCollection);
-							//$reqIdsToFillFirstArray = $this->getsetting->getSearchMaxProductCount() - count($firstCaseMergedArray);
-							//$secondCaseMergedArray = array_slice($secondIdsMergedArray, 0, $reqIdsToFillFirstArray, true); 
+	
 
 						if(count($searchProductCollections) > 0){ 
 							if(count($secondCaseProductCollection)) {

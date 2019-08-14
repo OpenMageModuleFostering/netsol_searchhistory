@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product Recommendation based on Seasons: readme</title>
+    <link rel="stylesheet" href="skin/style.css" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+<body>
+<!--<![endif]-->
+    <div id="main-container">
+      
+
+        <div id="main">
+
+            <h1>Product Recommendation based on Search history</h1>
+
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#description">Description</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#configuration">Configuration</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ol>
+
+
+            <h2 id="description">Description</h2>
+            <p><strong>Version 1.0.0</strong></p>
+           
+			<p>The present day eCommerce customers are highly accustomed to features like product recommendations and personalization.
+			 A website that hosts features that help them save their browsing efforts and time are the most desirable.<br/>
+			While most of the retailers are leveraging big data to enhance the precision in personalized recommendations, it is time they classify the recommendations on the basis of the product category and apply all the intelligence in understanding the customer's consumption cycles.</p>
+            
+
+            <h2 id="features">Features</h2>
+            <ul>
+                <li>Product recommendation on the basis of search history and that too latest search and newest product first</li>
+                <li>Flexibility to admin for settings of features</li>
+            </ul>	
+			
+            <h2 id="installation">Installation</h2>
+
+            <h3>Backup your data</h3>
+            <p>Backup the database and your store's web directory.</p>
+
+            <h3>Disable Compilation</h3>
+            <p>This step is for Magento 1.4+ versions. If you are running an older version, this step can be skipped. In the Magento admin panel, go to System->Tools->Compilation.
+            In case "Compiler Status" is "Enabled", click on the "Disable" button (in case the status is disabled you can skip this step): </p>
+
+            <h3>Download and Extract</h3>
+            <p>Download and extract (unzip) the extension's contents on you computer. Navigate inside the extracted folder.</p>
+
+            <h3>Upload files</h3>
+            <p>Using a FTP client, upload the content of the extension directory to the store's document root, so that the app directory in
+            the extension folder overwrites the app directory on the server. If asked to replace any files, select "Yes".</p>
+
+            <h3>Clear the cache</h3>
+            <p>In the Magento admin panel, go to System->Cache Management and press the "Flush Magento Cache" button:</p>
+			
+			
+		<h2 id="configuration">Configuration</h2>
+
+            <p>After the extension is installed, you can visit <strong>System->Configuration->Net Solutions->Personalytics Search Settings</strong> in the Magento admin panel to see the main configuration options:</p>
+            <p><img src="skin/frontend/base/default/images/netsol/searchhistory/predictiveanalytics/searchistory.jpg" style="max-width:1400px;"/></p>
+           
+            <h3>Enable:</h3>
+            <p>Admin option to enable or disable the extension. If you don't want to show recommendation block on any page then save this option as "No".</p>
+
+           <h3>Search Block Settings</h3>
+		   
+			<h3>Search heading</h3>
+			<p>Heading you want to show above the recommendation block. </p>
+			 
+			<h3>Maximum product count to display for search Block</h3>
+			<p>Number of products you want to show in the block. </p> 
+		
+			<h3>No. of search term to be considered for listing</h3>
+			<p>Latest number of search term of user you want to taken into consideration.</p>
+			
+			<h3>Enable embeded jquery</h3>
+			<p>If Jquery is already added on your wesbite then set this option as "No"</p>
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+
+        <h3>When I try to access your extension's configuration at System->Configuration->Personalytics Settings, I get a 404 error</h3>
+        <p>Logout &amp; Login back into the Magento admin panel.</p>
+
+    </div>
+
+    <div id="footer">
+        <div class="inner">
+            <p>&copy; 2016 Netsolutions India.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
