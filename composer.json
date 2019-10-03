@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/Netsol_Searchhistory",
+    "name": "openmage-module-fostering\/netsol_searchhistory",
     "type": "magento-module",
-    "license": "OSL",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "This extension will help vendors to show products as per the users latest search.",
     "authors": [
